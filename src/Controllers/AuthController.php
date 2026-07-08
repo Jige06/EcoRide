@@ -113,7 +113,18 @@ class AuthController extends Controller
 
             $repository->create($utilisateur);
 
+            // Enregistrement d'une statistique NoSQL (MongoDB) : ne doit jamais
+            // bloquer l'inscription si MongoDB est indisponible
+            try {
+                $statistiqueRepository = new StatistiqueRepository();
+                $statistiqueRepository->enregistrerInscription();
+            } catch (\Throwable $e) {
+                error_log('Erreur MongoDB (statistique inscription) : ' . $e->getMessage());
+            }
+
+            $_SESSION['success'] = "Votre compte a été créé avec succès, vous pouvez maintenant vous connecter.";
             $this->redirect('/connexion');
+            
         } else {
             $_SESSION['error'] = "Tous les champs doivent être remplis";
             $this->redirect('/inscription');

@@ -2,6 +2,9 @@
 
 session_start();
 
+// Autoloader de Composer (uniquement pour la bibliothèque mongodb/mongodb)
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // Chargement des variables d'environnement
 $env = parse_ini_file(__DIR__ . '/../.env', false, INI_SCANNER_RAW);
 foreach ($env as $key => $value) {
