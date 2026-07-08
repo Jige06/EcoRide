@@ -9,8 +9,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        
-    if (!$this->isPost()) {
+        if (!$this->isPost()) {
             $this->redirect('/inscription');
         }
 
@@ -76,7 +75,7 @@ class AuthController extends Controller
             }
 
             // Vérification que le mot de passe est indique à la 1ere saisi
-            if ($_POST['password'] !== $_POST['confirm_password']) {
+            if ($password !== $confirmPassword) {
                 $_SESSION['error'] = "Les mots de passe ne correspondent pas.";
                 $this->redirect('/inscription');
                 return;
@@ -84,16 +83,13 @@ class AuthController extends Controller
 
             $repository = new UtilisateurRepository();
 
-            // Vérifie que l'email n'est pas déjà utilisé (utilise findByEmail)
-            // Si l'email existe déjà, redirige vers /inscription avec un message d'erreur
             if ($repository->findByEmail($email) !== null) {
                 $_SESSION['error'] = "Un compte existe déjà avec cet email";
                 $_SESSION['prefill_email'] = $email;
                 $this->redirect('/inscription');
                 return;
             }
-            // Vérifie que le pseudo n'est pas déjà utilisé (utilise findByPseudo)
-            // Si le pseudo existe déjà, redirige vers /inscription avec un message d'erreur
+
             if ($repository->findByPseudo($pseudo) !== null) {
                 $_SESSION['error'] = "Un compte existe déjà avec ce pseudo";
                 $_SESSION['prefill_pseudo'] = $pseudo;
@@ -101,7 +97,6 @@ class AuthController extends Controller
                 return;
             }
 
-            // Hash le mot de passe avec la fonction PHP appropriée
             $hash = password_hash($password, PASSWORD_BCRYPT);
 
             $utilisateur = new Utilisateur();
@@ -123,5 +118,66 @@ class AuthController extends Controller
             $_SESSION['error'] = "Tous les champs doivent être remplis";
             $this->redirect('/inscription');
         }
+    }
+
+    public function connexion()
+    {
+        $this->render('auth/connexion');
+    }
+
+    public function login()
+    {
+        if (!$this->isPost()) {
+            $this->redirect('/connexion');
+        }
+
+        if (!$this->verifyCsrfToken($this->getPostData('csrf_token'))) {
+            $_SESSION['error'] = "Requête invalide, veuillez réessayer.";
+            $this->redirect('/connexion');
+            return;
+        }
+
+        $email = $this->getPostData('email');
+        $password = trim($_POST['password'] ?? '');
+
+        if ((!empty($email)) && (!empty($password))) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error'] = "L'adresse email n'est pas valide.";
+                $this->redirect('/connexion');
+                return;
+            }
+
+            $repository = new UtilisateurRepository();
+            $utilisateur = $repository->findByEmail($email);
+
+            if ($utilisateur === null || !password_verify($password, $utilisateur->getPassword())) {
+                $_SESSION['error'] = "Identifiants incorrects";
+                $this->redirect('/connexion');
+                return;
+            }
+
+            // Régénère l'identifiant de session pour empêcher toute fixation de session
+            session_regenerate_id(true);
+
+            $_SESSION['id_user'] = $utilisateur->getIdUtilisateur();
+            $_SESSION['nom'] = $utilisateur->getNom();
+            $_SESSION['prenom'] = $utilisateur->getPrenom();
+            $_SESSION['email'] = $utilisateur->getEmail();
+
+            $this->redirect('/');
+            return;
+        } else {
+            $_SESSION['error'] = "Veuillez remplir les champs.";
+            $this->redirect('/connexion');
+        }
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        session_start();
+        $_SESSION['success'] = "Vous avez été déconnecté avec succès.";
+        $this->redirect('/');
     }
 }

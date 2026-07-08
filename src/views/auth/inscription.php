@@ -25,17 +25,27 @@
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="<?= htmlspecialchars($_SESSION['prefill_email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
+                                       value="<?= htmlspecialchars($_SESSION['prefill_email'] ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="password" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
                                 <div class="form-text">10 caractères min., avec majuscule, minuscule, chiffre et caractère spécial.</div>
                             </div>
                             <div class="col-md-6">
                                 <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirm_password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="col-md-6">

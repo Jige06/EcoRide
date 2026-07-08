@@ -34,5 +34,8 @@ $router = new Router();
 $router->get('/', ['HomeController', 'index']);
 $router->get('/inscription', ['AuthController', 'inscription']);
 $router->post('/register', ['AuthController', 'register']);
+$router->get('/connexion', ['AuthController', 'connexion']);
+$router->post('/login', ['AuthController', 'login']);
+$router->get('/deconnexion', ['AuthController', 'logout']);
 
 $router->dispatch();
