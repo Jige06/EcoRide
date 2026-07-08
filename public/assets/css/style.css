@@ -1,127 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;500&display=swap");
 
 :root {
-    --ecoride-green-dark: #1A6B3C;
-    --ecoride-green: #2E8B57;
-    --ecoride-green-light: #52B788;
-    --ecoride-green-pale: #D8F3DC;
-    --ecoride-orange: #F4A261;
-    --ecoride-red: #E76F51;
-    --ecoride-cream: #FEFAE0;
-    --ecoride-dark: #212529;
-    --ecoride-white: #FFFFFF;
+  --ecoride-green-dark: #1a6b3c;
+  --ecoride-green: #2e8b57;
+  --ecoride-green-light: #52b788;
+  --ecoride-green-pale: #d8f3dc;
+  --ecoride-orange: #f4a261;
+  --ecoride-red: #e76f51;
+  --ecoride-cream: #fefae0;
+  --ecoride-dark: #212529;
+  --ecoride-white: #ffffff;
 }
 
 body {
-    font-family: 'Lato', sans-serif;
-    color: var(--ecoride-dark);
-    background-color: var(--ecoride-white);
+  font-family: "Lato", sans-serif;
+  color: var(--ecoride-dark);
+  background-color: var(--ecoride-white);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: var(--ecoride-green-dark);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--ecoride-green-dark);
 }
 
 /* Navbar */
 .bg-ecoride-navbar {
-    background-color: var(--ecoride-green-dark) !important;
+  background-color: var(--ecoride-green-dark) !important;
 }
 
 .navbar-brand {
-    font-family: 'Poppins', sans-serif;
-    color: var(--ecoride-white) !important;
-    font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--ecoride-white) !important;
+  font-size: 1.5rem;
 }
 
 .navbar-dark .nav-link {
-    color: var(--ecoride-white) !important;
-    font-weight: 500;
+  color: var(--ecoride-white) !important;
+  font-weight: 500;
 }
 
 .navbar-dark .nav-link:hover {
-    color: var(--ecoride-green-pale) !important;
+  color: var(--ecoride-green-pale) !important;
 }
 
 /* Hero */
 .hero-section {
-    background-color: var(--ecoride-green-pale);
+  background-color: var(--ecoride-green-pale);
 }
 
-.hero-image-placeholder {
-    width: 100%;
-    max-width: 500px;
-    height: 160px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px dashed var(--ecoride-green);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ecoride-green-dark);
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.05em;
+.hero-image {
+  max-width: 500px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-/* Sections "Qui sommes-nous" / "Nos valeurs" */
+/* Sections "Qui sommes-nous" et "Nos valeurs" */
 .about-section {
-    background-color: var(--ecoride-cream);
+  background-color: var(--ecoride-cream);
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 220px;
-    background-color: var(--ecoride-green-pale);
-    border: 1px solid var(--ecoride-green-light);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ecoride-green-dark);
-    font-weight: 500;
+.about-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 /* Boutons */
 .btn-success {
-    background-color: var(--ecoride-green);
-    border-color: var(--ecoride-green);
+  background-color: var(--ecoride-green);
+  border-color: var(--ecoride-green);
 }
 
 .btn-success:hover {
-    background-color: var(--ecoride-green-dark);
-    border-color: var(--ecoride-green-dark);
+  background-color: var(--ecoride-green-dark);
+  border-color: var(--ecoride-green-dark);
 }
 
 .btn-primary {
-    background-color: var(--ecoride-orange);
-    border-color: var(--ecoride-orange);
-    color: var(--ecoride-dark);
+  background-color: var(--ecoride-orange);
+  border-color: var(--ecoride-orange);
+  color: var(--ecoride-dark);
 }
 
 .btn-primary:hover {
-    background-color: var(--ecoride-red);
-    border-color: var(--ecoride-red);
-    color: var(--ecoride-white);
+  background-color: var(--ecoride-red);
+  border-color: var(--ecoride-red);
+  color: var(--ecoride-white);
 }
 
 /* Cards */
 .card {
-    border: 1px solid var(--ecoride-green-pale);
-    border-radius: 0.75rem;
+  border: 1px solid var(--ecoride-green-pale);
+  border-radius: 0.75rem;
 }
 
 /* Footer */
 footer {
-    background-color: var(--ecoride-green-dark) !important;
+  background-color: var(--ecoride-green-dark) !important;
 }
 
 footer a {
-    color: var(--ecoride-white) !important;
+  color: var(--ecoride-white) !important;
 }
 
 /* Badge écologique (utilisé plus tard pour les trajets en voiture électrique) */
 .badge-ecologique {
-    background-color: var(--ecoride-green);
-    color: var(--ecoride-white);
+  background-color: var(--ecoride-green);
+  color: var(--ecoride-white);
 }
