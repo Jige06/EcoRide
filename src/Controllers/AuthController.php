@@ -69,7 +69,8 @@ class AuthController extends Controller
 
             // Vérification que le mot de passe a le bon format (sécurité)
             if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/', $password)) {
-                $_SESSION['error'] = "Le mot de passe doit contenir au moins 10 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.";
+                $_SESSION['error'] = "Le mot de passe doit contenir au moins 10 caractères, 
+                une majuscule, une minuscule, un chiffre et un caractère spécial.";
                 $this->redirect('/inscription');
                 return;
             }
@@ -124,7 +125,6 @@ class AuthController extends Controller
 
             $_SESSION['success'] = "Votre compte a été créé avec succès, vous pouvez maintenant vous connecter.";
             $this->redirect('/connexion');
-            
         } else {
             $_SESSION['error'] = "Tous les champs doivent être remplis";
             $this->redirect('/inscription');
